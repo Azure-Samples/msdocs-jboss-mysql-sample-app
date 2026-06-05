@@ -1,8 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/java:1-17-bullseye
 
-# Install MySQL command-line client -- see https://dev.mysql.com/doc/refman/8.0/en/mysql.html
-RUN apt-get update && apt-get install -y gnupg lsb-release inetutils-tools \
-  && wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb \
-  && DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.29-1_all.deb \
+# Install MySQL-compatible command-line client from Debian bullseye
+RUN rm -f /etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list.save || true \
+  && sed -i '/dl.yarnpkg.com/d' /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null || true \
   && apt-get update \
-  && apt install -y mysql-client
+  && apt-get install -y gnupg lsb-release inetutils-tools default-mysql-client
