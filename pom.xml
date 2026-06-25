@@ -59,11 +59,12 @@
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
-                <version>5.0.1.Final</version>
+                <version>6.0.0.Final</version>
                 <configuration>
                     <runtime-name>ROOT.war</runtime-name>
                     <!-- Add MySQL data source -->
                     <commands>
+                        <comamnd>/subsystem=undertow/configuration=handler/file=welcome-content:write-attribute(name=path,value=${project.basedir}/welcome-content)</comamnd>
                         <comamnd>deploy target/jbossmysql/WEB-INF/lib/mysql-connector-j-9.1.0.jar</comamnd>
                         <comamnd>data-source add --name=MySQLDS --driver-name=mysql-connector-j-9.1.0.jar --jndi-name=java:jboss/MySQLDS --connection-url=${MYSQL_URL} --user-name=${MYSQL_USER} --password=${MYSQL_PASSWORD} --enabled=true --use-java-context=true</comamnd>
                     </commands>
