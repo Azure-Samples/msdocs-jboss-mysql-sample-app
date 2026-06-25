@@ -7,5 +7,5 @@ The dev container configuration lets you open the repository in a [GitHub codesp
 - Java
 - MySQL
 - Maven
-- Azure CLI (so you can run `az` commands directly).
+- Redis
 - [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) (so you can run `azd` commands directly).
